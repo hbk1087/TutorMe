@@ -11,7 +11,7 @@ __Name:__ Grant Sweeney
 
 __Computing ID:__ GCX8YV
 
-Installions 
+__Installions:__ 
     Install Python, Pip3
     Install Django through virtual environment
         python3 -m venv env
