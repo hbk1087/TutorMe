@@ -1,0 +1,100 @@
+/* START OF STARTER */
+:root {
+	--navybar: #001c53;
+	--lightblue: #C7DDFC;
+	--navy: #001c53;
+	--whiteish: #f2f2f2;
+	--black: #000000;
+	--green: #4CAF50;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Abril Fatface', serif;
+}
+
+.navbar {
+	background-color: var(--navybar);
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+	color: var(--whiteish);
+}
+
+.navbar-title {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 5px;
+	background-color: var(--lightblue);
+	color: var(--whiteish);
+}
+
+.navbar-links {
+	display: flex;
+	align-items: center;
+}
+
+.navbar-link {
+	color: var(--lightblue);
+	background-color: var(--whiteish);
+	margin-left: 20px;
+	text-decoration: none;
+	font-size: 16px;
+	border-radius: 20px;
+	border: 1px solid var(--whiteish);
+	padding: 5px 10px;
+}
+
+.navbar-link:hover {
+	text-decoration: underline;
+}
+
+.navbar-link:visited {
+	color: var(--lightblue);
+}
+
+.navbar-logout {
+	background-color: var(--lightblue);
+	color: var(--whiteish);
+	padding: 8px 16px;
+	border: none;
+	border-radius: 20px;
+	font-size: 16px;
+	cursor: pointer;
+	font-family: 'Abril Fatface', serif;
+}
+
+footer {
+	width: 100%;
+	background-color: var(--navy);
+	color: #fff;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+}
+
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+}
+
+.main {
+	min-height: calc(100% - 40px);
+	margin-bottom: -10px;
+}
+
+
+/* END OF STARTER */
+
+/* ANY BODY CSS HERE */
+
+
+
+/* END OF CSS BODY */
