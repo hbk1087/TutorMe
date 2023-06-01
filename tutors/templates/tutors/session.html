@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requests</title>
+    <link rel="stylesheet" href="{% static 'tutors/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <img src="{% static 'tutors/images/FinalLogo.png' %}" alt="HoosTutoring Logo" class="navbar-logo">
+            <div class="navbar-links">
+                <a href="/tutors/" class="navbar-link">PROFILE</a>
+                <a href="/tutors/sis_search" class="navbar-link">ADD COURSE</a>
+                <a href="/tutors/show_requests" class="navbar-link">MY REQUESTS</a>
+                <a href="/tutors/schedule" class="navbar-link">SCHEDULE</a>
+            </div>
+            {% if user.is_authenticated %}
+            <button class="navbar-logout" onclick="window.location='/login/logout'">LOGOUT</button>
+            {% else %}
+            <h1>YOU ARE NOT AUTHORIZED</h1>
+            <a href="/login">Return To Log In</a>
+            {% endif %}
+        </nav>
+        <div class="middle">
+            <form class="new-session-form" method="POST" action="{% url 'tutors:make_session' request %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="session-date">Date</label>
+                    <input type="date" id="session-date" name="session-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="session-start-time">Start Time</label>
+                    <input type="time" id="session-start-time" name="session-start-time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="session-end-time">End Time</label>
+                    <input type="time" id="session-end-time" name="session-end-time" required>
+                </div>
+                <button type="submit">Create Session</button>
+        </div>
+        <footer>
+            <p>&copy; 2023 A-23</p>
+        </footer>
+</body>
+
+</html>

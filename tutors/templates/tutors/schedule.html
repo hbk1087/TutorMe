@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule</title>
+    <link rel="stylesheet" href="{% static 'tutors/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <img src="{% static 'tutors/images/FinalLogo.png' %}" alt="HoosTutoring Logo" class="navbar-logo">
+            <div class="navbar-links">
+                <a href="/tutors/" class="navbar-link">PROFILE</a>
+                <a href="/tutors/sis_search" class="navbar-link">ADD COURSE</a>
+                <a href="/tutors/show_requests" class="navbar-link">MY REQUESTS</a>
+                <a href="/tutors/schedule" class="navbar-link">SCHEDULE</a>
+            </div>
+            {% if user.is_authenticated %}
+            <button class="navbar-logout" onclick="window.location='/login/logout'">LOGOUT</button>
+            {% else %}
+            <h1>YOU ARE NOT AUTHORIZED</h1>
+            <a href="/login">Return To Log In</a>
+            {% endif %}
+        </nav>
+
+        <div class="middle">
+            <div class="box">
+            <h1>MY TUTORING SESSIONS</h1>
+        </div>
+            <table>
+                <thead class="my-header">
+                    <tr>
+                        <th style="background-color: var(--navy); color: var(--white);"> COURSE</th>
+                        <th style="background-color: var(--navy); color: var(--white);"> STUDENT</th>
+                        <th style="background-color: var(--navy); color: var(--white);"> START TIME</th>
+                        <th style="background-color: var(--navy); color: var(--white);"> END TIME</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for session in sessions %}
+                    <tr>
+                        <td>{{ session.course }}</td>
+                        <td>{{ session.student }}</td>
+                        <td>{{ session.start_time }}</td>
+                        <td>{{ session.end_time }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">No sessions found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <h1>UNDER CONSTRUCTION</h1>
+            <img src="../../static/tutors/images/construction.jpeg" alt="Construction Site Photo"> -->
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 A-23</p>
+    </footer>
+</body>
+
+</html>

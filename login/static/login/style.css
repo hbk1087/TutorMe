@@ -1,0 +1,303 @@
+:root {
+  --navy: #001C53;
+  --lightblue: #C7DDFC;
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey: #AAB8D4;
+  --orange: #FFA500;
+
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.navbar {
+  background-color: var(--navy);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: var(--white);
+  z-index: 1;
+}
+
+.navbar-title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: var(--navy);
+  color: var(--orange);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  color: var(--navy);
+  background-color: var(--lightblue);
+  margin-left: 25px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 20px;
+  border: 1px solid var(--lightblue);
+  padding: 5px 10px;
+}
+
+.navbar-link:hover {
+  text-decoration: underline;
+}
+
+.navbar-link:visited {
+  color: var(--navy);
+}
+
+.input-box {
+  text-align: right;
+  position: relative;
+  top: 100px;
+  left: -50px;
+}
+
+textarea {
+  width: 50%;
+  height: 300px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #C7DDFC;
+  background-color: #C7DDFC;
+  border-radius: 4px;
+  resize: none;
+}
+
+.name {
+  display: inline-block;
+  background-color: #C7DDFC;
+  position: absolute;
+  top: 400px;
+  left: 160px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 30px;
+  margin-bottom: 20px;
+}
+
+.email {
+  display: inline-block;
+  background-color: #C7DDFC;
+  position: absolute;
+  top: 480px;
+  left: 160px;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 30px;
+  margin-bottom: 20px;
+}
+
+.navbar-logout {
+  background-color: var(--grey);
+  color: var(--white);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.rectangle {
+  width: 400px;
+  height: 200px;
+  background-color: var(--lightblue);
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ANY BODY CSS HERE */
+.middle {
+  text-align: center;
+  padding: 30px;
+  color: var(--navy);
+}
+
+.radio-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 150px;
+}
+
+.form-wrapper {
+  background-color: var(--lightblue);
+  /* Set the background color of the rectangle */
+  border-radius: 30px;
+  /* Set the border radius to create the rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  max-width: 400px;
+  /* Set the maximum width of the rectangle */
+  max-height: 400px;
+  padding: 50px;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--navy);
+  color: #fff;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.main {
+  min-height: calc(100% - 40px);
+  margin-bottom: -10px;
+}
+
+.navbar-logo {
+  width: 200px;
+  /* adjust the size as needed */
+  height: -500px;
+  /* this will preserve the aspect ratio of the image */
+}
+
+/* 
+img.center {
+  width: 50px;
+  height: 50px; 
+  position: absolute;
+  bottom: 100px;
+} */
+
+.login-message-container {
+  position: absolute;
+  bottom: 130px;
+  /* adjust this value to move the container up or down */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--white);
+}
+
+.login-message-container p {
+  margin-bottom: 10px;
+}
+
+.image-container {
+  margin-top: 20px;
+}
+
+img.center {
+  position: absolute;
+  top: 10%;
+  /* adjust this value to move the image up or down */
+  right: 50%;
+  max-width: 60%;
+  height: 60%;
+}
+
+.intro {
+  position: absolute;
+  top: 44%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+}
+
+.planimage {
+  position: absolute;
+  top: 65%;
+  right: 58%;
+  max-width: 20%;
+  height: 20%;
+}
+
+.learnimage {
+  position: absolute;
+  top: 65%;
+  right: 45%;
+  max-width: 20%;
+  height: 20%;
+}
+
+.succeedimage {
+  position: absolute;
+  top: 65%;
+  right: 32%;
+  max-width: 20%;
+  height: 20%;
+}
+
+.rectangle {
+  width: 400px;
+  height: 200px;
+  background-color: var(--lightblue);
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-wrapper {
+  background-color: var(--lightblue);
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  max-width: 400px;
+  max-height: 400px;
+  padding: 50px;
+}
+
+.middle {
+  text-align: center;
+  padding: 30px;
+  color: var(--navy);
+}
+
+.input-box {
+  text-align: right;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px 16px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #C7DDFC;
+  background-color: #C7DDFC;
+}
+
+.contwemail {
+  width: 50%; /* resize the image to be 50% of its original size */
+  height: auto; /* maintain the aspect ratio of the image */
+}
+
+img[src$="contwgoogle.png"] {
+  top: 70%;
+  width: 20%;/* Replace with your desired width */
+  height: auto; /* Automatically adjust height based on aspect ratio */
+  right: 38.5%;
+}

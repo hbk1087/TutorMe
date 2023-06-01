@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requests</title>
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+    <link rel="stylesheet" href="{% static 'students/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <img src="{% static 'students/images/FinalLogo.png' %}" alt="HoosTutoring Logo" class="navbar-logo">
+            <div class="navbar-links">
+                <a href="/students" class="navbar-link">PROFILE</a>
+                <a href="/students/sis_search" class="navbar-link">FIND A TUTOR</a>
+                <a href="/students/show_requests" class="navbar-link"> MY REQUESTS</a>
+                <a href="/students/schedule" class="navbar-link">SCHEDULE</a>
+            </div>
+            {% if user.is_authenticated %}
+            <button class="navbar-logout" onclick="window.location='/login/logout'">LOGOUT</button>
+            {% endif %}
+        </nav>
+
+        <div class="middle">
+
+            <div class="request-container">
+                <div class="title-box rounded-box">
+                <h1>MY TUTOR REQUESTS</h1>
+            </div>
+
+                <div class="request-list">
+                    {% if requests %}
+                    <ul>
+                        {% for request in requests %}
+                        <li>
+                            <div class="request rounded-box">
+                                <div class="request-details">
+                                    <span class="tutor-name">{{ request.tutor }}</span>
+                                    <span class="course-id">{{ request.course }}</span>
+                                </div>
+                                <div class="request-status">
+                                    <!-- <button class="delete-button">
+                                        <a href="">
+                                            <img src="../../static/students/images/trashcan.png" alt="Delete">
+                                        </a>
+                                    </button> -->
+                                    {% if request.accepted %}
+                                    <span class="status accepted">Accepted</span>
+                                    {% elif request.rejected %}
+                                    <span class="status rejected">Rejected</span>
+                                    {% else %}
+                                    <span class="status pending">Pending</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <p>No tutor requests found.</p>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 A-23</p>
+    </footer>
+</body>
+
+</html>

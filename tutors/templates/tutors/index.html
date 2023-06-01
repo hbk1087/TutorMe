@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor's Home</title>
+    <link rel="stylesheet" href="{% static 'tutors/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <img src="{% static 'tutors/images/FinalLogo.png' %}" alt="HoosTutoring Logo" class="navbar-logo">
+            <div class="navbar-links">
+                <a href="/tutors/" class="navbar-link">PROFILE</a>
+                <a href="/tutors/sis_search" class="navbar-link">ADD COURSE</a>
+                <a href="/tutors/show_requests" class="navbar-link">MY REQUESTS</a>
+                <a href="/tutors/schedule" class="navbar-link">SCHEDULE</a>
+            </div>
+            {% if user.is_authenticated %}
+            <button class="navbar-logout" onclick="window.location='/login/logout'">LOGOUT</button>
+            {% endif %}
+        </nav>
+        {% if user.is_authenticated and not user.profile.is_student %}
+        <div class="middle_top">
+			<label for="about_me"><u>ABOUT ME</u></label>
+		</div>
+        <div class="profile">
+            <br>
+            <h1>MY PROFILE</h1>
+            <form action="{% url 'tutors:update_profile' %}">
+                {% csrf_token %}
+                <div class="left">
+					<div class="profile-img-container">
+						<div class="profile-img-circle"></div>
+						<img src="../../static/tutors/images/profile.png" alt="" class="profile-img">
+					  </div>
+					<label for="first_name">
+					<input type="text" id="first_name" name="first_name"
+						value="{% if user.profile.first_name %}{{ user.profile.first_name }}{% endif %}">
+					<br>
+					<label for="last_name">
+					<input type="text" id="last_name" name="last_name"
+						value="{% if user.profile.last_name %}{{ user.profile.last_name }}{% endif %}">
+					<br>
+                    <label for="pay_rate">
+                    <input type="text" id="pay_rate" name="pay_rate"
+                        value="{% if user.profile.tutor.pay_rate %}{{ user.profile.tutor.pay_rate }}{% endif %}">
+                    <br>  
+				</div>
+				<div class="left">
+					<input type="text" id="about_me" name="about_me"
+						value="{% if user.profile.tutor.about_me %}{{ user.profile.tutor.about_me }}{% endif %}">
+					<br>
+				</div>
+				<br>
+                <button type="submit" onclick="alert('Saved Successfully!')">Save</button>
+            </form>
+		</div>
+		{% else %}
+		<h1>YOU ARE NOT AUTHORIZED</h1>
+		<a href="/login">Return To Log In</a>
+		{% endif %}
+	</div>
+	<footer>
+		<p>&copy; 2023 A-23</p>
+	</footer>
+</body>
+
+</html>

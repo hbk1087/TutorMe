@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+<link rel="stylesheet" href="{% static 'login/style.css' %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOOSTUTORING</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+    <nav class="navbar">
+        <img src="{% static 'tutors/images/FinalLogo.png' %}" alt="HoosTutoring Logo" class="navbar-logo">
+        <div class="navbar-links">
+        </div>
+        {% if user.is_authenticated %}
+        <button class="navbar-logout" onclick="window.location='/login/logout'">LOGOUT</button>
+        {% endif %}
+    </nav>
+
+    <div class="middle">
+        {% if user.is_authenticated %}
+        <p>Welcome, You are logged in as {{ user.email }}</p>
+            {% if user.profile.exists %}
+                {% if user.profile.is_student %}
+                    <h1>You are a Student</h1>
+                    <img src="../../static/login/images/student.png" alt="student photo">
+                    <br>
+                    <a href="/students">Click Here To Continue</a>
+                {% else %}
+                <h1>You are a Tutor</h1>
+                <img src="../../static/login/images/tutor.png" alt="student photo">
+                    <br>
+                <a href="/tutors">Click here to Continue</a>
+                {% endif %}
+            {% else %}
+                <p>Click the link below to continue and confirm your information</p>
+                <a href="createAccount/">Continue</a>
+            {% endif %}
+        {% else %}
+        <img src="../../static/login/images/intro.svg" alt="intro" class="intro">
+        <br>
+        <br>
+        <br>
+        <div class="login-container">
+            <div class="login-message-container">
+              <p> Use the google icon button above to get started!</p>
+            </div>
+            <div class="image-container">
+                <a href="{% provider_login_url 'google' %}">
+                  <img class="center" src="../../static/login/images/contwgoogle.png" alt="Google Image">
+                </a>
+              </div>
+        {% endif %}
+
+    </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 A-23</p>
+    </footer>
+</body>
+
+</html>

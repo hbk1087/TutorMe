@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIS Search</title>
+    <link rel="stylesheet" href="{% static 'tutors/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <img src="{% static 'tutors/images/FinalLogo.png' %}" alt="HoosTutoring Logo" class="navbar-logo">
+            <div class="navbar-links">
+                <a href="/tutors/" class="navbar-link">PROFILE</a>
+                <a href="/tutors/sis_search" class="navbar-link">ADD COURSE</a>
+                <a href="/tutors/show_requests" class="navbar-link">MY REQUESTS</a>
+                <a href="/tutors/schedule" class="navbar-link">SCHEDULE</a>
+            </div>
+            {% if user.is_authenticated %}
+            <button class="navbar-logout" onclick="window.location='/login/logout'">LOGOUT</button>
+            {% endif %}
+        </nav>
+
+        <div class="middle">
+            {% if user.is_authenticated and not user.profile.is_student %}
+            <div class="title-box rounded-box">
+            <h2>PLEASE SEARCH FOR YOUR CLASS</h2>
+        </div>
+            <div class="form-wrapper">
+            <form class="sis_form" action="{% url 'tutors:sis_form_submit' %}" method="get">
+                {% csrf_token %}
+                <label for="year">
+                    <h3>YEAR</h3>
+                </label>
+                <input type="text" id="year" name="year" placeholder="2023"
+                    value="{% if data.0.year %}{{ data.0.year }}{% endif %}">
+                <label for="term">
+                    <h3>TERM</h3>
+                </label> 
+                <select id="term" name="term">
+                    <option value="january">January</option>
+                    <option value="spring" selected>Spring</option>
+                    <option value="summer">Summer</option>
+                    <option value="fall">Fall</option>
+                </select>
+                <label for="subject">
+                    <h3>SUBJECT</h3>
+                </label>
+                <input type="text" id="subject" name="subject" placeholder="CS"
+                    value="{% if data.0.subject %}{{ data.0.subject }}{% endif %}">
+                <label for="catalog_nbr">
+                    <h3>CATALOG NUMBER</h3>
+                </label>
+                <input type="text" id="catalog_nbr" name="catalog_nbr" placeholder="3240"
+                    value="{% if data.0.catalog_nbr %}{{ data.0.catalog_nbr }}{% endif %}">
+                <label for="instructor_name">
+                    <h3>INSTRUCTOR LAST NAME</h3>
+                </label>
+                <input type="text" id="instructor_name" name="instructor_name" placeholder="Horton"
+                    value="{% if data.0.instructor_name %}{{ data.0.instructor_name }}{% endif %}">
+                <br>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+            {% else %}
+            <h1>YOU ARE NOT AUTHORIZED</h1>
+            <a href="/login">Return To Log In</a>
+            {% endif %}
+        </div>
+        <div class="search-results">
+            {% if user.is_authenticated and not user.profile.is_student %}
+            {% if courses %}
+            <h2>Search Results</h2>
+            <ul>
+                {% for result in courses %}
+                <li>
+                    <div class="result">
+                        <h3>Course Name: {{ result.subject }} {{result.catalog_nbr}}</h3>
+                        <a href="{% url 'tutors:add_course' course_id=result.id %}"
+                            class="select-button" onclick="alert('Class Added!')">Select</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <h2>No Search Results</h2>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 A-23</p>
+    </footer>
+</body>
+
+</html>

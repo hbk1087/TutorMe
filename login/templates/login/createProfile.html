@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load socialaccount %}
+<link rel="stylesheet" href="{% static 'login/style.css' %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <nav class="navbar">
+            <img src="{% static 'login/images/FinalLogo.png' %}" alt="HoosTutoring Logo" class="navbar-logo">
+            <!-- <div class="navbar-links">
+                <a href="/students" class="navbar-link">HOME</a>
+                <a href="/students/sis_search" class="navbar-link">SEARCH</a>
+                <a href="/students/show_requests" class="navbar-link">REQUESTS</a>
+                <a href="/students/schedule" class="navbar-link">SCHEDULE</a>
+            </div> -->
+            {% if user.is_authenticated %}
+            <button class="navbar-logout" onclick="window.location='/login/logout'">LOGOUT</button>
+            {% endif %}
+        </nav>
+
+        <div class="middle">
+            {% if user.is_authenticated %}
+            <h1>CREATE YOUR PROFILE</h1>
+            <div class="form-wrapper">
+                <form class="form" action="{% url 'login:add_profile' %}" method="post">
+                    {% csrf_token %}
+                    <label for="first_name">
+                        <h2>FIRST NAME:</h2>
+                    </label>
+                    <input type="text" id="first_name" name="first_name"><br>
+                    <label for="last_name">
+                        <h2>LAST NAME:</h2>
+                    </label>
+                    <input type="text" id="last_name" name="last_name"><br>
+                    <br>
+                    <h2>Are you a...?</h2>
+                    <div class="radio-wrapper">
+                        <label><input type="radio" name="is_student" value=True>STUDENT</label>
+                        <label><input type="radio" name="is_student" value=False>TUTOR</label>
+                    </div>
+                    <br>
+                    <input type="submit" value="SUBMIT">
+                </form>
+            </div>
+            {% else %}
+            <p>You are currently not logged in. Please click the Google image below to log in.</p>
+            <a href="{% provider_login_url 'google' %}"><img class="center"
+                    src="../../static/login/images/GoogleLogo.png" alt="Google Image"></a>
+            {% endif %}
+        </div>
+    </div>
+    <footer>
+
+        <p>&copy; 2023 A-23</p>
+    </footer>
+</body>
+
+</html>
