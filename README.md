@@ -1,16 +1,5 @@
 # TutorMe - Group A23
 
-Group Members
-
-Grant Sweeney - gcx8yv,
-Harshita Tirumalapudi - ht3vd,
-Janai Malone - jmm9ew
-
-
-__Name:__ Grant Sweeney
-
-__Computing ID:__ GCX8YV
-
 __Installions:__ 
     Install Python, Pip3
     Install Django through virtual environment
