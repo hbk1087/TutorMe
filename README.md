@@ -1,4 +1,4 @@
-# TutorMe - Group A23
+# TutorMe
 
 __Installions:__ 
     Install Python, Pip3
